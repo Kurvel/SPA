@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar'; 
 import 'react-calendar/dist/Calendar.css';
-import DropdownMenu from './DropDownMenu';
-import { Option } from './DropDownMenu';
+import ChoiceVarmCold from './ChoiceVarmCold';
+import { Option } from './ChoiceVarmCold';
+import Time from './Time';
+import { TimeOption } from './Time';
 
 
   
@@ -13,14 +15,21 @@ type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
  const options: Option[] = [
-    { value: 'Warm', label: 'Warm' },
-    { value: 'Cold', label: 'Cold' }
+    {  label: 'Warm' },
+    {  label: 'Cold' }
+  ];
+
+  const timeOptions: TimeOption[] = [
+    {  label: 'Am' },
+    {  label: 'Fm' },
+    {  label: 'Evning' }
   ];
 
 function Booking() {
     const [newDate, setNewDate] = useState<Value>(new Date());
     const [newName, setNewName] = useState<string>("");
     const [selectedOption, setSelectedOption] = useState<Option | null>(null);
+    const [selectedTime, setSelectedTime] = useState<TimeOption | null>(null);
 
    
 
@@ -34,7 +43,7 @@ function Booking() {
             headers: {
                 "content-type": "application/json"
             },
-            body: JSON.stringify({ date: isoDate, name: newName, option: selectedOption || options[0] }) 
+            body: JSON.stringify({ date: isoDate, name: newName, option: selectedOption?.label || options[0], timeOption: selectedTime?.label || timeOptions[0] }) 
         }) 
         .then(() => console.log("Date saved successfully", isoDate))
         .catch(error => console.error("Error saving date:", error));
@@ -44,7 +53,8 @@ function Booking() {
         <div>
             <h3>BOOKING</h3>
             <form onSubmit={saveDate}>
-            <DropdownMenu options={options} setSelectedOption={setSelectedOption} selectedOption={selectedOption} />
+            <ChoiceVarmCold options={options} setSelectedOption={setSelectedOption} selectedOption={selectedOption} />
+            <Time timeOptions={timeOptions} setSelectedTime={setSelectedTime} selectedTime={selectedTime} ></Time>
                 <label>Name: </label>
                 <input type="text" value={newName} onChange={((e) => setNewName(e.target.value))} />
                 <Calendar onChange={setNewDate} value={newDate} />
