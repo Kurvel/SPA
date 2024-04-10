@@ -5,6 +5,7 @@ import Start from './components/Start';
 import About from './components/About';
 import Booking from './components/Booking';
 import Contacts from './components/Contacts';
+import PrintDates from './components/PrintDates';
 
 function App() {
  
@@ -45,6 +46,7 @@ function App() {
          "about": <About/>,
          "contacts": <Contacts/>,
          "booking": <Booking/>,
+         "printDates":<PrintDates/>
       } [page] || <Start/>
     }
     </>
