@@ -1,37 +1,37 @@
 import React, { useState } from 'react';
 
-export interface Option {
-  value: string;
+export interface TimeOption {
+  
   label: string;
 }
 
-interface DropdownMenuProps {
-  options: Option[];
-  selectedOption: Option | null;
-  setSelectedOption: (option: Option) => void;
+interface TimeProps {
+  timeOptions: TimeOption[];
+    selectedTime: TimeOption | null;
+    setSelectedTime: (option: TimeOption) => void;
 }
 
-const DropdownMenu: React.FC<DropdownMenuProps> = ({ options, selectedOption, setSelectedOption }) => {
+const Time: React.FC<TimeProps> = ({ timeOptions, selectedTime, setSelectedTime }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleOptionClick = (option: Option) => {
-    setSelectedOption(option);
+  const handleOptionClick = (timeOption: TimeOption) => {
+    setSelectedTime(timeOption);
     setIsOpen(false);
   };
 
   return (
     <div>
       <div onClick={toggleDropdown}>
-        {selectedOption ? selectedOption.label : 'Warm or Cold?'}
+        {selectedTime ? selectedTime.label : 'Am, Fm or Evning'}
         <i className={`arrow ${isOpen ? 'open' : ''}`} />
       </div>
       {isOpen && (
         <ul>
-          {options.map((option, index) => (
+          {timeOptions.map((option, index) => (
             <li key={index} onClick={() => handleOptionClick(option)}>
               {option.label}
             </li>
@@ -42,4 +42,4 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ options, selectedOption, se
   );
 };
 
-export default DropdownMenu;
+export default Time;
