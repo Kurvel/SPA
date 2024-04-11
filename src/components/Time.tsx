@@ -26,7 +26,7 @@ const Time: React.FC<TimeProps> = ({ timeOptions, selectedTime, setSelectedTime 
   return (
     <div>
       <div onClick={toggleDropdown}>
-        {selectedTime ? selectedTime.label : 'Am, Fm or Evning'}
+        {selectedTime ? selectedTime.label : 'Am, Fm or Evning?'}
         <i className={`arrow ${isOpen ? 'open' : ''}`} />
       </div>
       {isOpen && (
