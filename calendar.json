@@ -1,5 +1,18 @@
 {
   "dates": [
-    
+    {
+      "id": "993d",
+      "date": "2024-04-18T22:00:00.000Z",
+      "name": "Emil",
+      "option": "Cold",
+      "timeOption": "Evening"
+    },
+    {
+      "id": "af2b",
+      "date": "2024-04-24T22:00:00.000Z",
+      "name": "Emil",
+      "option": "Cold",
+      "timeOption": "Am, Fm or Evning?"
+    }
   ]
 }

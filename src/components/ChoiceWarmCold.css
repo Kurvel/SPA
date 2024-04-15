@@ -1,11 +1,15 @@
 
       .dropDown {
         
+ 
         
         cursor: pointer; 
-        background-color: black;
+        
        
       }
-
+      .ul {
+        list-style: none;
+        cursor: pointer; 
+      }
      
    

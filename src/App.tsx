@@ -46,8 +46,8 @@ function App() {
         "start": <Start/>,
          "about": <About/>,
          "contacts": <Contacts/>,
-         "booking": <Booking/>,
-         "redDays": <GetRedDays/>
+         "booking": <Booking/>
+         
       } [page] || <Start/>
     }
     </>

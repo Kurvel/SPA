@@ -110,6 +110,8 @@ function Booking() {
     }, []);
 
     
+      
+    
     
 
     return (
@@ -133,7 +135,7 @@ function Booking() {
                 </div>
                
                 <div>
-                    <FetchOptionsComponent
+                    <FetchOptionsComponent 
                         option={selectedOption ? selectedOption.label : options[0].label}
                         timeOption={selectedTime ? selectedTime.label : timeOptions[0].label}
                         setFilteredData={setFilteredData}
@@ -141,7 +143,7 @@ function Booking() {
                     />
                 </div>
                 <button  type="submit" onClick={() => window.alert('Date booked!')}>Save</button>
-                <button >test</button>
+                
                 
             </form>
         </div>

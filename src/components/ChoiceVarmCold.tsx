@@ -31,7 +31,7 @@ const ChoiceVarmCold: React.FC<ChoiceVarmColdProps> = ({ options, selectedOption
         <i className={`arrow ${isOpen ? 'open' : ''}`} />
       </div>
       {isOpen && (
-        <ul>
+        <ul className='ul' >
           {options.map((option, index) => (
             <li key={index} onClick={() => handleOptionClick(option)}>
               {option.label}
