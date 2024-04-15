@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './ChoiceWarmCold.css'
 
 export interface TimeOption {
   
@@ -25,12 +26,12 @@ const Time: React.FC<TimeProps> = ({ timeOptions, selectedTime, setSelectedTime 
 
   return (
     <div>
-      <div onClick={toggleDropdown}>
-        {selectedTime ? selectedTime.label : 'Am, Fm or Evning'}
+      <div className='dropDown' onClick={toggleDropdown}>
+        {selectedTime ? selectedTime.label : 'Am, Fm or Evning?'}
         <i className={`arrow ${isOpen ? 'open' : ''}`} />
       </div>
       {isOpen && (
-        <ul>
+        <ul className='ul' >
           {timeOptions.map((option, index) => (
             <li key={index} onClick={() => handleOptionClick(option)}>
               {option.label}

@@ -1,25 +1,18 @@
 {
   "dates": [
     {
-      "id": "8390",
-      "date": "2024-04-24T22:00:00.000Z",
-      "name": "Test",
-      "option": "Warm",
-      "optionAmFmEvning": "Evning"
-    },
-    {
-      "id": "fe5f",
-      "date": "2024-04-24T22:00:00.000Z",
-      "name": "Test",
-      "option": "Warm",
-      "optionAmFmEvning": "Evning"
-    },
-    {
-      "id": "3fb1",
-      "date": "2024-04-16T22:00:00.000Z",
-      "name": "test",
+      "id": "993d",
+      "date": "2024-04-18T22:00:00.000Z",
+      "name": "Emil",
       "option": "Cold",
-      "timeOption": "Am"
+      "timeOption": "Evening"
+    },
+    {
+      "id": "af2b",
+      "date": "2024-04-24T22:00:00.000Z",
+      "name": "Emil",
+      "option": "Cold",
+      "timeOption": "Am, Fm or Evning?"
     }
   ]
 }

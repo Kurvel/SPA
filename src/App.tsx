@@ -5,7 +5,8 @@ import Start from './components/Start';
 import About from './components/About';
 import Booking from './components/Booking';
 import Contacts from './components/Contacts';
-import PrintDates from './components/PrintDates';
+import GetRedDays from './components/RedDays';
+
 
 function App() {
  
@@ -45,8 +46,8 @@ function App() {
         "start": <Start/>,
          "about": <About/>,
          "contacts": <Contacts/>,
-         "booking": <Booking/>,
-         "printDates":<PrintDates/>
+         "booking": <Booking/>
+         
       } [page] || <Start/>
     }
     </>

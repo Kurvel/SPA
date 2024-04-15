@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './ChoiceWarmCold.css'
 
 export interface Option {
   
@@ -25,12 +26,12 @@ const ChoiceVarmCold: React.FC<ChoiceVarmColdProps> = ({ options, selectedOption
 
   return (
     <div>
-      <div onClick={toggleDropdown}>
+      <div className='dropDown' onClick={toggleDropdown}>
         {selectedOption ? selectedOption.label : 'Warm or Cold?'}
         <i className={`arrow ${isOpen ? 'open' : ''}`} />
       </div>
       {isOpen && (
-        <ul>
+        <ul className='ul' >
           {options.map((option, index) => (
             <li key={index} onClick={() => handleOptionClick(option)}>
               {option.label}
