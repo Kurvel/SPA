@@ -18,6 +18,8 @@ interface FetchOptionsProps {
 const FetchOptionsComponent: React.FC<FetchOptionsProps> = ({ option, timeOption, setFilteredData }) => {
     const [fetchOptions, setFetchOptions] = useState<FetchOptions[]>([]);
 
+    
+
     const fetchData = () => {
         fetch("http://localhost:3000/dates")
             .then(res => res.json())
@@ -25,17 +27,25 @@ const FetchOptionsComponent: React.FC<FetchOptionsProps> = ({ option, timeOption
     };
 
     useEffect(() => {
-        fetchData(); // Fetch data when the component mounts
-    },[option, timeOption] ); 
+        fetchData(); 
+    },[option, timeOption, setFilteredData] ); 
     
     
     useEffect(() => {
+
+        if (option === null || timeOption === null) {
+            
+            return; // Exit early
+        }
+        
         const filteredData = fetchOptions.filter(item => item.option === option && item.timeOption === timeOption);
+
         setFilteredData(filteredData);
+        
         
     }, [option, timeOption, fetchOptions, setFilteredData]);
 
-    return null; // Return null or you can return JSX to render something
+    return null;
 }
 
 export default FetchOptionsComponent;

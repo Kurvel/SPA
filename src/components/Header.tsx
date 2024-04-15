@@ -12,7 +12,7 @@ function Header(props: Props) {
      <button onClick={() => props.setPage("about")} >About</button>
      <button onClick={() => props.setPage("contacts")} >Contacts</button>
      <button onClick={() => props.setPage("booking")} >Booking</button>
-     <button onClick={() => props.setPage("printDates")} >PrintDates</button>
+     <button onClick={() => props.setPage("redDays")} >REDDAYS</button>
 
         </header>
      

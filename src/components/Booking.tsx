@@ -6,6 +6,7 @@ import { Option } from './ChoiceVarmCold';
 import Time from './Time';
 import { TimeOption } from './Time';
 import FetchOptionsComponent, { FetchOptions } from './FetchOptions';
+import './Booking.css'
 
 type ValuePiece = Date | null;
 
@@ -36,8 +37,8 @@ function Booking() {
     const [selectedTime, setSelectedTime] = useState<TimeOption | null>(null);
     const [filteredData, setFilteredData] = useState<FetchOptions[]>([]);
     const [filteredTimeData, setFilteredTimeData] = useState<FetchOptions[]>([]);
+    const [redDays, setRedDays] = useState<Date[]>([]);
     
-
     const handleSelectedOptionChange = (option: Option | null) => {
         console.log('Selected option changed:', option);
         setSelectedOption(option);
@@ -59,8 +60,9 @@ function Booking() {
 
     const saveDate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+        
         const isoDate = (newDate as Date).toISOString();
+        
 
         fetch("http://localhost:3000/dates", {
             method: "POST",
@@ -72,9 +74,11 @@ function Booking() {
         .then(() => console.log("Date saved successfully", isoDate))
         .catch(error => console.error("Error saving date:", error));
 
+        
         setSelectedOption(options.find(option => option.label === "Warm or Cold?") || null);
         setSelectedTime(null);
         setNewName("");
+       
         
     };
 
@@ -88,24 +92,46 @@ function Booking() {
             );
         });
     };
-
+    const isMonday = (checkDate: Date): boolean => {
+        return checkDate.getDay() === 1;
+    };
+   
     
+    useEffect(() => {
+        fetch("http://sholiday.faboul.se/dagar/v2.1/2024")
+            .then((response) => response.json())
+            .then((data) => {
+                const redDays = data.dagar
+                    .filter((dag: any) => dag.helgdag)
+                    .map((dag: any) => new Date(dag.datum));
+                setRedDays(redDays);
+            })
+            .catch(error => console.error("Error fetching red days:", error));
+    }, []);
+
     
     
 
     return (
-        <div>
+        <div >
             <h3>BOOKING</h3>
-            <form onSubmit={saveDate}>
-                <ChoiceVarmCold options={options} setSelectedOption={(option) => handleSelectedOptionChange(option)} selectedOption={selectedOption} />
+            <form  onSubmit={saveDate}>
+                <div className='choice'>
+
+                    <ChoiceVarmCold options={options} setSelectedOption={(option) => handleSelectedOptionChange(option)} selectedOption={selectedOption} />
                 <Time timeOptions={timeOptions} setSelectedTime={setSelectedTime} selectedTime={selectedTime} ></Time>
+                
+                </div>
                 <label>Name: </label>
                 <input type="text" value={newName} onChange={((e) => setNewName(e.target.value))} />
-                <Calendar 
-                    tileDisabled={({ date }) => isDateDisabled(date, filteredData)} 
+                <div className='Booking' >
+                     <Calendar 
+                    tileDisabled={({ date }) => isDateDisabled(date, filteredData) || isMonday(date) || redDays.some(redDay => date.getDate() === redDay.getDate() && date.getMonth() === redDay.getMonth() && date.getFullYear() === redDay.getFullYear())} 
                     onChange={setNewDate} 
                     value={newDate} 
                 />
+                </div>
+               
                 <div>
                     <FetchOptionsComponent
                         option={selectedOption ? selectedOption.label : options[0].label}
@@ -114,7 +140,8 @@ function Booking() {
                        // fetchData={fetchData} // Pass the fetchData function as a prop
                     />
                 </div>
-                <button  type="submit">Save</button>
+                <button  type="submit" onClick={() => window.alert('Date booked!')}>Save</button>
+                <button >test</button>
                 
             </form>
         </div>
