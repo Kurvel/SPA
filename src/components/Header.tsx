@@ -1,23 +1,16 @@
-
 interface Props {
-    setPage: ((page: string) => void),
+  setPage: (page: string) => void;
 }
 
 function Header(props: Props) {
-    return (
-        
-        
-        <header>
-        <button onClick={() => props.setPage("start")} >Start</button>
-     <button onClick={() => props.setPage("about")} >About</button>
-     <button onClick={() => props.setPage("contacts")} >Contacts</button>
-     <button onClick={() => props.setPage("booking")} >Booking</button>
-     
-
-        </header>
-     
-        
-    );
+  return (
+    <header>
+      <button onClick={() => props.setPage("start")}>Start</button>
+      <button onClick={() => props.setPage("about")}>About</button>
+      <button onClick={() => props.setPage("contacts")}>Contacts</button>
+      <button onClick={() => props.setPage("booking")}>Booking</button>
+    </header>
+  );
 }
 
 export default Header;
